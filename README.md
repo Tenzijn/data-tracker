@@ -50,7 +50,6 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 
 - [React](https://reactjs.org/)
 - [Vite](https://vitejs.dev/)
-- [TailwindCSS](https://tailwindcss.com/)
 - [Netlify](https://www.netlify.com/)
 - [React Router](https://reactrouter.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
