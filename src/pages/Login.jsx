@@ -12,7 +12,7 @@ import {
 import { FcGoogle } from 'react-icons/fc';
 import { handleFetchRandomImage } from '../handles/unsplashHandler';
 import '../style/Login.scss';
-import diaryImg from '../dear-diary.png';
+import diaryImg from '/dear-diary.png';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
