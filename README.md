@@ -57,3 +57,5 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 - [editor.js](https://editorjs.io/)
 - [chakra-ui](https://chakra-ui.com/)
 - [firebase](https://firebase.google.com/)
+- [unsplash-api](https://unsplash.com/developers)
+- [openweathermap-api](https://openweathermap.org/api)
