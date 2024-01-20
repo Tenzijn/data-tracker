@@ -49,7 +49,7 @@ function Login() {
             alignItems='center'
             justifyContent='center'
             h='100%'
-            className='background-overlay'
+            bg={'rgba(0,0,0,0.3)'}
           ></Flex>
         </GridItem>
       </Hide>
