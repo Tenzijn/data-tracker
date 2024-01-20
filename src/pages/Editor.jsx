@@ -1,5 +1,7 @@
+import EditorComponent from '../components/EditorComponent';
+
 function Editor() {
-  return <div>Editor</div>;
+  return <EditorComponent />;
 }
 
 export default Editor;

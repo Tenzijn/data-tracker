@@ -1,0 +1,61 @@
+#editor-js {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 20px;
+  position: relative;
+  background: white;
+  //   this is for the background lines
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: -19px -19px;
+}
+
+#editor-js::before,
+#editor-js::after {
+  /* Styles to distinguish sheets from one another */
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  border: 1px solid #bbb;
+}
+
+#editor-js::before,
+#editor-js::after {
+  content: '';
+  position: absolute;
+  height: 95%;
+  width: 99%;
+  background-color: #eee;
+}
+
+#editor-js::before {
+  right: 15px;
+  top: 0;
+  transform: rotate(-1deg);
+  z-index: -1;
+}
+
+#editor-js::after {
+  top: 5px;
+  right: -5px;
+  transform: rotate(1deg);
+  z-index: -2;
+}
+
+.btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+// for mobile devices
+
+@media (max-width: 768px) {
+  #editor-js {
+    padding: 10px;
+  }
+}
