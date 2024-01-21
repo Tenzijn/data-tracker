@@ -13,7 +13,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { handleFetchRandomImage } from '../handles/unsplashHandler';
 import {
   handleLoginUser,
-  handleGoogleLogin,
   handleCreateUser,
   handleGoogleLoginWithRedirect,
 } from '../handles/firebaseHandler';

@@ -115,36 +115,6 @@ export const handleLogoutUser = async () => {
     });
 };
 
-// handle google login
-export const handleGoogleLogin = async (logInSuccessful) => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      console.log(token);
-      // The signed-in user info.
-      const user = result.user;
-      console.log('Login Successful:', user);
-      localStorage.setItem('user', JSON.stringify(user));
-      logInSuccessful();
-      // ...
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage + errorCode);
-      // The email of the user's account used.
-      const email = error.email;
-      console.log(email);
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(credential);
-      // ...
-    });
-};
-
 // handle google login with redirect
 export const handleGoogleLoginWithRedirect = async () => {
   signInWithRedirect(auth, provider);
