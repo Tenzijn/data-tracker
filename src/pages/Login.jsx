@@ -11,9 +11,15 @@ import {
 } from '@chakra-ui/react';
 import { FcGoogle } from 'react-icons/fc';
 import { handleFetchRandomImage } from '../handles/unsplashHandler';
+import {
+  handleLoginUser,
+  handleGoogleLogin,
+  handleCreateUser,
+} from '../handles/firebaseHandler';
 import '../style/Login.scss';
 import diaryImg from '/dear-diary.png';
-function Login() {
+
+function Login({ logInSuccessful, ...props }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -30,7 +36,14 @@ function Login() {
       setBackgroundImage(res);
     });
   }, []);
-  const handleSubmit = () => {};
+
+  const logInWithGoogle = () => {
+    handleGoogleLogin(logInSuccessful);
+  };
+
+  const logInWithEmail = () => {
+    handleLoginUser(email, password, logInSuccessful);
+  };
 
   return (
     <Grid
@@ -60,17 +73,20 @@ function Login() {
           </GridItem>
           <GridItem>
             <FormControl isRequired>
+              {/* Google Login */}
               <Button
                 my={4}
                 py={6}
                 w={'100%'}
                 type='submit'
                 colorScheme='gray'
+                onClick={logInWithGoogle}
                 leftIcon={<FcGoogle size={'35px'} />}
               >
-                Log In or Sign Up with Google
+                Log In with Google
               </Button>
               <hr />
+              {/* Email Login */}
               <FormLabel mt={6}>E-mail</FormLabel>
               <Input
                 placeholder='example@gmail.com'
@@ -88,20 +104,14 @@ function Login() {
                 mt={4}
                 colorScheme='teal'
                 type='submit'
-                onClick={handleSubmit}
                 w={'100%'}
+                onClick={logInWithEmail}
               >
                 {' '}
                 Log In{' '}
               </Button>
-
-              <Button
-                mt={4}
-                colorScheme='orange'
-                type='submit'
-                onClick={handleSubmit}
-                w={'100%'}
-              >
+              {/* Sign Up */}
+              <Button mt={4} colorScheme='orange' type='submit' w={'100%'}>
                 {' '}
                 Sign Up{' '}
               </Button>

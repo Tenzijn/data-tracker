@@ -84,12 +84,13 @@ export const handleCreateUser = async ({ email, password }) => {
 };
 
 // handle login user
-export const handleLoginUser = async (email, password) => {
+export const handleLoginUser = async (email, password, logInSuccessful) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log(user);
+      logInSuccessful();
       // ...
     })
     .catch((error) => {
@@ -113,8 +114,7 @@ export const handleLogoutUser = async () => {
 };
 
 // handle google login
-
-export const handleGoogleLogin = async () => {
+export const handleGoogleLogin = async (logInSuccessful) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -124,6 +124,7 @@ export const handleGoogleLogin = async () => {
       // The signed-in user info.
       const user = result.user;
       console.log('Login Successful:', user);
+      logInSuccessful();
       // ...
     })
     .catch((error) => {
