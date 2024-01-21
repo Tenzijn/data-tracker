@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // React Router
 import { Routes, Route } from 'react-router-dom';
 import './style/App.scss';
@@ -9,8 +9,20 @@ import Login from './pages/Login';
 import Editor from './pages/Editor';
 import PageNotFound from './pages/PageNotFound';
 
+import { auth } from './firebase/firebaseConfig';
+import { getRedirectResult } from 'firebase/auth';
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    async function isLogIn() {
+      const response = await getRedirectResult(auth);
+      if (response) {
+        setIsLogin(true);
+      }
+    }
+    isLogIn();
+  }, []);
 
   const logInSuccessful = () => {
     setIsLogin(true);

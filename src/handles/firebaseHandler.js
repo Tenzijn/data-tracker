@@ -11,6 +11,7 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  signInWithRedirect,
 } from 'firebase/auth';
 import { fireStore, auth, provider } from '../firebase/firebaseConfig';
 
@@ -67,12 +68,13 @@ export const handleFetch = async () => {
 };
 
 // handle create user
-export const handleCreateUser = async ({ email, password }) => {
+export const handleCreateUser = async (email, password, logInSuccessful) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log(user);
+      logInSuccessful();
       // ...
     })
     .catch((error) => {
@@ -124,6 +126,7 @@ export const handleGoogleLogin = async (logInSuccessful) => {
       // The signed-in user info.
       const user = result.user;
       console.log('Login Successful:', user);
+      localStorage.setItem('user', JSON.stringify(user));
       logInSuccessful();
       // ...
     })
@@ -140,4 +143,9 @@ export const handleGoogleLogin = async (logInSuccessful) => {
       console.log(credential);
       // ...
     });
+};
+
+// handle google login with redirect
+export const handleGoogleLoginWithRedirect = async () => {
+  signInWithRedirect(auth, provider);
 };

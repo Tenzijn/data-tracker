@@ -15,6 +15,7 @@ import {
   handleLoginUser,
   handleGoogleLogin,
   handleCreateUser,
+  handleGoogleLoginWithRedirect,
 } from '../handles/firebaseHandler';
 import '../style/Login.scss';
 import diaryImg from '/dear-diary.png';
@@ -38,11 +39,16 @@ function Login({ logInSuccessful, ...props }) {
   }, []);
 
   const logInWithGoogle = () => {
-    handleGoogleLogin(logInSuccessful);
+    // handleGoogleLogin(logInSuccessful);
+    handleGoogleLoginWithRedirect();
   };
 
   const logInWithEmail = () => {
     handleLoginUser(email, password, logInSuccessful);
+  };
+
+  const signUpWithEmail = () => {
+    handleCreateUser(email, password, logInSuccessful);
   };
 
   return (
@@ -111,7 +117,13 @@ function Login({ logInSuccessful, ...props }) {
                 Log In{' '}
               </Button>
               {/* Sign Up */}
-              <Button mt={4} colorScheme='orange' type='submit' w={'100%'}>
+              <Button
+                mt={4}
+                colorScheme='orange'
+                type='submit'
+                w={'100%'}
+                onClick={signUpWithEmail}
+              >
                 {' '}
                 Sign Up{' '}
               </Button>
