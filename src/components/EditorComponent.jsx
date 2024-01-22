@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import { EDITOR_JS_TOOLS } from '../Constant';
 import '../style/EditorComponent.scss';
 import { Timestamp } from 'firebase/firestore';
-import { Button } from '@chakra-ui/react';
+import { Button, Box } from '@chakra-ui/react';
 
 function EditorComponent({ submitData, closeModel, data, setEdit }) {
   const blockContent = data?.blocks || [
@@ -46,10 +46,10 @@ function EditorComponent({ submitData, closeModel, data, setEdit }) {
 
   return (
     <>
-      <div>
-        <div id='editor-js'></div>
-      </div>
-      <div>
+      <Box>
+        <Box id='editor-js'></Box>
+      </Box>
+      <Box>
         <Button
           w='100%'
           colorScheme='blue'
@@ -68,7 +68,7 @@ function EditorComponent({ submitData, closeModel, data, setEdit }) {
         >
           {btnText}
         </Button>
-      </div>
+      </Box>
     </>
   );
 }

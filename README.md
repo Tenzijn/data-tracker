@@ -30,17 +30,15 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 
 ## Features
 
-- [ ] Add diary entry.
-- [ ] Login with Google.
-- [ ] Upload images and videos.
-- [ ] Update diary entry.
-- [ ] Delete diary entry.
-- [ ] Read diary entry.
+- [x] Add diary entry.
+- [x] Login with Google.
+- [x] Upload images and videos.
+- [x] Update diary entry.
+- [x] Delete diary entry.
+- [x] Read diary entry.
 - [ ] Search diary entry.
 - [ ] Filter diary entry by date.
 - [ ] Filter diary entry by mood of the day.
-- [ ] Filter diary entry by weather.
-- [ ] Filter diary entry by location.
 - [ ] Filter diary entry by tags.
 - [ ] Filter diary entry by people.
 
@@ -56,4 +54,3 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 - [chakra-ui](https://chakra-ui.com/)
 - [firebase](https://firebase.google.com/)
 - [unsplash-api](https://unsplash.com/developers)
-- [openweathermap-api](https://openweathermap.org/api)

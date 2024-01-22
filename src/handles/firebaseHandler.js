@@ -1,11 +1,4 @@
-import {
-  deleteDoc,
-  doc,
-  addDoc,
-  collection,
-  updateDoc,
-  deleteField,
-} from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -17,52 +10,11 @@ import { fireStore, auth, provider } from '../firebase/firebaseConfig';
 // handle submit
 export const handleSubmit = async (data) => {
   try {
-    const docRef = await addDoc(collection(fireStore, data.uid), {
+    await addDoc(collection(fireStore, data.uid), {
       content: data.content,
     });
   } catch (e) {
     console.error('Error adding document: ', e);
-  }
-};
-
-// handle update
-export const handleUpdate = async (data, id) => {
-  console.log(data);
-  try {
-    const docRef = await addDoc(collection(fireStore, 'dairy'), {
-      title: data.title,
-      content: data.content,
-      date: data.date,
-      time: data.time,
-      uid: data.uid,
-    });
-    console.log('Document written with ID: ', docRef.id);
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
-};
-
-// handle delete
-export const handleDelete = async (data) => {
-  const collectionId = data.uid;
-  const docId = data.Id;
-  try {
-    const dataRef = await deleteDoc(doc(fireStore, collectionId, docId));
-    await updateDoc(dataRef, {
-      collectionId: deleteField(),
-    });
-  } catch (e) {
-    console.error('Error deleting document: ', e);
-  }
-};
-
-// handle delete node
-
-export const handleDeleteNode = async (data) => {
-  try {
-    await deleteDoc(doc(fireStore, data.uid));
-  } catch (e) {
-    console.error('Error deleting document: ', e);
   }
 };
 
@@ -72,7 +24,6 @@ export const handleCreateUser = async (email, password, logInSuccessful) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log(user);
       logInSuccessful();
       // ...
     })
