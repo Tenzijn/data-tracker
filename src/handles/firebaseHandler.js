@@ -69,8 +69,7 @@ export const handleGoogleLoginWithPopup = async () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // The signed-in user info.
-      const user = result.user;
-      console.log(user);
+      result.user;
     })
     .catch((error) => {
       // Handle Errors here.
