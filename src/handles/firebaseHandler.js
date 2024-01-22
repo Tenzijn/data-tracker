@@ -1,16 +1,15 @@
 import {
   deleteDoc,
-  getDocs,
   doc,
   addDoc,
   collection,
+  updateDoc,
+  deleteField,
 } from 'firebase/firestore'; // Import the necessary package
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  signInWithPopup,
-  GoogleAuthProvider,
   signInWithRedirect,
 } from 'firebase/auth';
 import { fireStore, auth, provider } from '../firebase/firebaseConfig';
@@ -18,15 +17,9 @@ import { fireStore, auth, provider } from '../firebase/firebaseConfig';
 // handle submit
 export const handleSubmit = async (data) => {
   try {
-    const docRef = await addDoc(collection(fireStore, 'dairy'), {
-      title: data.title,
+    const docRef = await addDoc(collection(fireStore, data.uid), {
       content: data.content,
-      date: data.date,
-      time: data.time,
-      uid: data.uid,
     });
-    console.log('data', data);
-    console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
@@ -50,21 +43,27 @@ export const handleUpdate = async (data, id) => {
 };
 
 // handle delete
-export const handleDelete = async (id) => {
+export const handleDelete = async (data) => {
+  const collectionId = data.uid;
+  const docId = data.Id;
   try {
-    await deleteDoc(doc(fireStore, 'dairy', id));
+    const dataRef = await deleteDoc(doc(fireStore, collectionId, docId));
+    await updateDoc(dataRef, {
+      collectionId: deleteField(),
+    });
   } catch (e) {
     console.error('Error deleting document: ', e);
   }
 };
 
-// handle fetch
-export const handleFetch = async () => {
-  const querySnapshot = await getDocs(collection(fireStore, 'dairy'));
-  const data = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+// handle delete node
+
+export const handleDeleteNode = async (data) => {
+  try {
+    await deleteDoc(doc(fireStore, data.uid));
+  } catch (e) {
+    console.error('Error deleting document: ', e);
+  }
 };
 
 // handle create user
@@ -93,7 +92,6 @@ export const handleLoginUser = async (email, password, logInSuccessful) => {
       const user = userCredential.user;
       console.log(user);
       logInSuccessful();
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -107,11 +105,11 @@ export const handleLogoutUser = async () => {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      console.log('logout');
+      window.location.reload();
     })
     .catch((error) => {
       // An error happened.
-      console.log(error);
+      throw new Error("Couldn't logout", error);
     });
 };
 

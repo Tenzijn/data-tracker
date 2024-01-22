@@ -1,11 +1,12 @@
 import EditorJs from '@editorjs/editorjs';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { EDITOR_JS_TOOLS } from '../Constant';
 import '../style/EditorComponent.scss';
+import { Timestamp } from 'firebase/firestore';
+import { Button } from '@chakra-ui/react';
 
-const DEFAULT_INITIAL_DATA = {
-  time: new Date().getTime(),
-  blocks: [
+function EditorComponent({ submitData, closeModel, data, setEdit }) {
+  const blockContent = data?.blocks || [
     {
       type: 'header',
       data: {
@@ -13,10 +14,12 @@ const DEFAULT_INITIAL_DATA = {
         level: 1,
       },
     },
-  ],
-};
-
-function EditorComponent() {
+  ];
+  const DEFAULT_INITIAL_DATA = {
+    time: Timestamp.now(),
+    blocks: blockContent,
+  };
+  const [btnText, setBtnText] = useState('save');
   const ejInstance = useRef(null);
 
   const initEditor = () => {
@@ -47,19 +50,24 @@ function EditorComponent() {
         <div id='editor-js'></div>
       </div>
       <div>
-        <button
+        <Button
+          w='100%'
+          colorScheme='blue'
           className='btn btn-save'
           onClick={async () => {
             try {
               const savedData = await ejInstance.current.save();
-              console.log(savedData);
+              submitData(savedData);
+              closeModel();
             } catch {
               console.log('error');
             }
+            setBtnText('saved');
+            setEdit(null);
           }}
         >
-          Save
-        </button>
+          {btnText}
+        </Button>
       </div>
     </>
   );
