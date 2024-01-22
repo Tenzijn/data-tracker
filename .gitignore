@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# IDE - VSCode
+.vscode/*
+
+# firebase
+firebase.json
+firebase-debug.log
+firebase-debug.log.json
+firebase-debug.log.html

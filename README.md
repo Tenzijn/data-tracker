@@ -1,8 +1,6 @@
 # Dear Dairy - A simple diary app
 
-[visit page 🔗](https://transcendent-chaja-94f5e7.netlify.app/)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3426609f-8d86-4884-94f6-524f9b727f37/deploy-status)](https://app.netlify.com/sites/transcendent-chaja-94f5e7/deploys)
+[visit page 🔗](https://dairy-3d2a4.web.app/)
 
 ## Description
 
