@@ -5,12 +5,12 @@ import {
   collection,
   updateDoc,
   deleteField,
-} from 'firebase/firestore'; // Import the necessary package
+} from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  signInWithRedirect,
+  signInWithPopup,
 } from 'firebase/auth';
 import { fireStore, auth, provider } from '../firebase/firebaseConfig';
 
@@ -113,7 +113,24 @@ export const handleLogoutUser = async () => {
     });
 };
 
-// handle google login with redirect
-export const handleGoogleLoginWithRedirect = async () => {
-  signInWithRedirect(auth, provider);
+// handle google login with popup
+export const handleGoogleLoginWithPopup = async () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // The signed-in user info.
+      const user = result.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage + errorCode);
+      // The email of the user's account used.
+      error.email;
+      // The AuthCredential type that was used.
+      const credential = error.credential;
+      console.log(credential);
+      // ...
+    });
 };

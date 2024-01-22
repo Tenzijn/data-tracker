@@ -10,26 +10,17 @@ import Editor from './pages/Editor';
 import PageNotFound from './pages/PageNotFound';
 
 import { auth } from './firebase/firebaseConfig';
-import { getRedirectResult } from 'firebase/auth';
 import Loading from './components/Loading';
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // for popup login with google
   useEffect(() => {
     const localStorageUser = JSON.parse(localStorage.getItem('user'));
-    async function isLogIn() {
-      const response = await getRedirectResult(auth)
-        .then((result) => {
-          const user = result.user;
-          if (user) {
-            localStorage.setItem('user', JSON.stringify(user));
-            return true;
-          }
-          return false;
-        })
-        .catch((error) => {});
-      if (response) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
         setIsLogin(true);
         setIsLoading(false);
       } else if (localStorageUser !== null) {
@@ -38,8 +29,7 @@ function App() {
       } else {
         setIsLoading(false);
       }
-    }
-    isLogIn();
+    });
   }, []);
 
   const logInSuccessful = () => {

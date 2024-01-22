@@ -41,6 +41,7 @@ function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userContent, setUserContent] = useState([]);
   const [editData, setEditData] = useState(null);
+  const [dairyId, setDairyId] = useState(null);
   const userData = JSON.parse(localStorage.getItem('user'));
   const logOut = () => {
     localStorage.removeItem('user');
@@ -69,12 +70,13 @@ function Home() {
     fetchData();
   }, []);
 
-  const updateData = async (id, data) => {
+  const updateData = async (data) => {
     try {
-      await updateDoc(doc(fireStore, userData.uid, id), {
+      await updateDoc(doc(fireStore, userData.uid, dairyId), {
         content: data,
       });
       fetchData();
+      setDairyId(null);
     } catch (e) {
       console.log(e);
     }
@@ -148,6 +150,7 @@ function Home() {
                       onClick={(e) => {
                         e.preventDefault();
                         setEditData(content.content);
+                        setDairyId(id);
                         onOpen();
                       }}
                     >
@@ -185,7 +188,7 @@ function Home() {
           <ModalCloseButton />
           <ModalBody>
             <EditorComponent
-              submitData={submitData}
+              submitData={editData === null ? submitData : updateData}
               closeModel={onClose}
               data={editData}
               setEdit={setEdit}

@@ -14,7 +14,7 @@ import { handleFetchRandomImage } from '../handles/unsplashHandler';
 import {
   handleLoginUser,
   handleCreateUser,
-  handleGoogleLoginWithRedirect,
+  handleGoogleLoginWithPopup,
 } from '../handles/firebaseHandler';
 import '../style/Login.scss';
 import diaryImg from '/dear-diary.png';
@@ -39,7 +39,8 @@ function Login({ logInSuccessful, ...props }) {
 
   const logInWithGoogle = () => {
     // handleGoogleLogin(logInSuccessful);
-    handleGoogleLoginWithRedirect();
+    handleGoogleLoginWithPopup();
+    // handleGoogleLoginWithRedirect();
   };
 
   const logInWithEmail = () => {
