@@ -6,6 +6,13 @@
 
 A simple diary app built with React, Vite, Firebase, Editor.js and etc. This project is a part of my API project for HackYourFuture. The goal of this project is to build a simple diary app that allows users to create, read, update and delete their diary entries. The app also allows users to upload images and videos to their diary entries.
 
+# Images
+
+![Home Page](./readMe_photo/Login.png)
+![Login Page](./readMe_photo/User_page.png)
+![Diary Page](./readMe_photo/Adding_dairy.png)
+![Diary Page](./readMe_photo/Delete_edit.png)
+
 ---
 
 ## How to setup the project
@@ -63,10 +70,3 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 - [ ] sometimes login with google is not working on mobile devices.
 - [ ] image upload is not working in Editor.js.
 - [ ] Header is not working properly in Editor.js.
-
-# Images
-
-![Home Page](./readMe_photo/Login.png)
-![Login Page](./readMe_photo/User_page.png)
-![Diary Page](./readMe_photo/Adding_dairy.png)
-![Diary Page](./readMe_photo/Delete_edit.png)
