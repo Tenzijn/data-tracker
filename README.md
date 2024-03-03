@@ -8,6 +8,24 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 
 ---
 
+## How to setup the project
+
+- Clone the repository
+- Run `npm install` to install all the dependencies
+- Create a new project in firebase and enable google authentication
+- Create a new web app in firebase and copy the firebase config
+- Create a new file called `.env` in the root of the project and add the following environment variables
+  ```
+  VITE_FIREBASE_API_KEY=your-firebase-api-key
+  VITE_FIREBASE_AUTH_DOMAIN=your-firebase-auth-domain
+  VITE_FIREBASE_PROJECT_ID=your-firebase-project-id
+  VITE_FIREBASE_STORAGE_BUCKET=your-firebase-storage-bucket
+  VITE_FIREBASE_MESSAGING_SENDER_ID=your-firebase-messaging-sender-id
+  VITE_FIREBASE_APP_ID=your-firebase-app-id
+  VITE_FIREBASE_MEASUREMENT_ID=your-firebase-measurement-id
+  ```
+- Run `npm run dev` to start the development server
+
 ## Features
 
 - [x] Add diary entry.
