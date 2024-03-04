@@ -23,6 +23,17 @@ function Login({ logInSuccessful, ...props }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [backgroundImage, setBackgroundImage] = useState('');
+  const emailData = document.getElementById('#email');
+  const passwordData = document.getElementById('#password');
+
+  setTimeout(() => {
+    if (emailData.matches(':autofill')) {
+      setEmail(emailData.value);
+    }
+    if (passwordData.matches(':autofill')) {
+      setPassword(passwordData.value);
+    }
+  }, 500);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -95,6 +106,7 @@ function Login({ logInSuccessful, ...props }) {
               {/* Email Login */}
               <FormLabel mt={6}>E-mail</FormLabel>
               <Input
+                name='email'
                 placeholder='example@gmail.com'
                 type='email'
                 onChange={handleEmailChange}
@@ -102,6 +114,7 @@ function Login({ logInSuccessful, ...props }) {
               />
               <FormLabel>Password</FormLabel>
               <Input
+                name='password'
                 type='password'
                 onChange={handlePasswordChange}
                 id='password'
