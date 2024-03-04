@@ -2,6 +2,10 @@
 
 [visit page 🔗](https://dairy-3d2a4.web.app/)
 
+if you want to test the app, you can use the following credentials:
+username: root@gmail.com
+password: 123456789
+
 ## Description
 
 A simple diary app built with React, Vite, Firebase, Editor.js and etc. This project is a part of my API project for HackYourFuture. The goal of this project is to build a simple diary app that allows users to create, read, update and delete their diary entries. The app also allows users to upload images and videos to their diary entries.
@@ -66,7 +70,7 @@ A simple diary app built with React, Vite, Firebase, Editor.js and etc. This pro
 
 # Known Bugs
 
-- [ ] Login with email and password is not working.
+- [x] Login with email and password is not working. (Fixed)
 - [ ] sometimes login with google is not working on mobile devices.
 - [ ] image upload is not working in Editor.js.
 - [ ] Header is not working properly in Editor.js.
